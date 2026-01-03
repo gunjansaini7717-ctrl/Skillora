@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skillora Price Calculator</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 30px;
+            width: 360px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            text-align: center;
+            color: #fff;
+        }
+
+        /* 🔵 LOGO — square image becomes circle here */
+        .logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;      
+            object-fit: cover;       
+            border: 3px solid rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        h4 {
+            font-size: 13px;
+            font-weight: 400;
+            color: #d1d5db;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: linear-gradient(135deg, #4f46e5, #3b82f6);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59,130,246,0.6);
+        }
+
+        .result {
+            display: none;
+            margin-top: 18px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #22c55e;
+            text-shadow: 1px 1px 5px #000;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <img 
+        src="Skillora logo final.webp" 
+        alt="Skillora Logo" 
+        class="logo"
+    >
+
+    <h1>Skillora - Your Academic Partner</h1>
+    <h2>Price calculator</h2>
+    <h4>
+        If deadline is within 1 day.<br>
+        Mention the deadline in hours and keep the days column=1
+    </h4>
+
+    <input type="number" id="pages" placeholder="Number of Pages"><br>
+    <input type="number" id="days" placeholder="Days to Complete"><br>
+    <input type="number" id="hours" placeholder="Hours to Complete"><br>
+    <button onclick="calculatePrice()">Calculate</button>
+    <p class="result" id="priceResult"></p>
+</div>
+
+
+<script>
+function calculatePrice() {
+    const pages = Number(document.getElementById("pages").value);
+    const days = Number(document.getElementById("days").value);
+    const hours = Number(document.getElementById("hours").value);
+
+    if (pages <= 0 || days <= 0 || hours <= 0) {
+        alert("Please enter valid values");
+        return;
+    }
+
+    let totalprice;
+    const pf = 10;
+
+    if (days == 1) {
+
+        if (hours <= 4) {
+            if (pages <= 5) {
+                totalprice = (pages * 9) + pf;
+            } else if (pages > 5 && pages <= 10) {
+                totalprice = (pages * 9.5) + pf;
+            } else {
+                alert("Unfortunately! These number of pages cannot be completed within given deadline");
+                return;
+            }
+        }
+
+        else if (hours > 4 && hours <= 6) {
+            if (pages <= 5) {
+                totalprice = (pages * 8.5) + pf;
+            } else if (pages > 5 && pages <= 15) {
+                totalprice = (pages * 9.5) + pf;
+            } else {
+                alert("Unfortunately! These number of pages cannot be completed within given deadline");
+                return;
+            }
+        }
+
+        else if (hours > 6 && hours <= 9) {
+            if (pages <= 5) {
+                totalprice = (pages * 8) + pf;
+            } else if (pages > 5 && pages <= 15) {
+                totalprice = (pages * 9) + pf;
+            } else if (pages > 15 && pages <= 20) {
+                totalprice = (pages * 9.5) + pf;
+            } else {
+                alert("Unfortunately! These number of pages cannot be completed within given deadline");
+                return;
+            }
+        }
+
+        else if (hours > 9 && hours <= 12) {
+            if (pages <= 5) {
+                totalprice = (pages * 8) + pf;
+            } else if (pages > 5 && pages <= 10) {
+                totalprice = (pages * 8.5) + pf;
+            } else if (pages > 10 && pages <= 15) {
+                totalprice = (pages * 9) + pf;
+            } else if (pages > 15 && pages <= 20) {
+                totalprice = (pages * 9.5) + pf;
+            } else {
+                alert("Unfortunately! These number of pages cannot be completed within given deadline");
+                return;
+            }
+        }
+
+        else if (hours > 12 && hours <= 18) {
+            if (pages <= 5) {
+                totalprice = (pages * 8) + pf;
+            } else if (pages > 5 && pages <= 10) {
+                totalprice = (pages * 8) + pf;
+            } else if (pages > 10 && pages <= 15) {
+                totalprice = (pages * 8.5) + pf;
+            } else if (pages > 15 && pages <= 20) {
+                totalprice = (pages * 9) + pf;
+            } else if (pages > 20 && pages <= 30) {
+                totalprice = (pages * 10) + pf;
+            } else {
+                alert("Unfortunately! These number of pages cannot be completed within given deadline");
+                return;
+            }
+        }
+
+        else if (hours > 18 && hours <= 24) {
+            if (pages <= 5) {
+                totalprice = (pages * 8) + pf;
+            } else if (pages > 5 && pages <= 10) {
+                totalprice = (pages * 8) + pf;
+            } else if (pages > 10 && pages <= 15) {
+                totalprice = (pages * 8) + pf;
+            } else if (pages > 15 && pages <= 20) {
+                totalprice = (pages * 9) + pf;
+            } else if (pages > 20 && pages <= 30) {
+                totalprice = (pages * 9) + pf;
+            } else {
+                totalprice = (pages * 9)+pf;
+            }
+        }
+    }
+
+    else if (days > 1) {
+        totalprice = (pages * 6)+pf;
+    }
+
+    document.getElementById("priceResult").innerText = "Total Price: ₹" + totalprice.toFixed(0);
+    document.getElementById("priceResult").style.display = "block";
+}
+</script>
+
+</body>
+</html>
